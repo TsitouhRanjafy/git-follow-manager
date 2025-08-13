@@ -5,13 +5,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gfm": "node ./index.js"
+    "build": "npx tsc"
   },
   "keywords": [],
   "author": "Tsitohaina",
   "license": "ISC",
   "dependencies": {
     "nodemon": "^3.1.10",
+    "typescript": "^5.9.2",
     "yargs": "^18.0.0-candidate.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "@types/yargs": "^17.0.33"
   }
 }
