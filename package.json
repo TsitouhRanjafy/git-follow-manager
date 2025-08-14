@@ -4,12 +4,13 @@
   "type": "module",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "Tsitohaina",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.5.0",
+    "inquirer": "^12.9.2",
     "nodemon": "^3.1.10",
     "yargs": "^18.0.0-candidate.7"
   }
