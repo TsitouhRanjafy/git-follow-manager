@@ -1,6 +1,6 @@
 export default {
     command: 'unfollow',
-    description: 'Se désabonner à utilisateur',
+    description: 'Se désabonner à utilisateur\n',
     builder: (yargs) => {
         return yargs
             .option('username', {

@@ -1,6 +1,6 @@
 export default {
     command: 'following',
-    description: 'Affiche tout l\'utilisateur qui vous suit',
+    description: 'Affiche tout l\'utilisateur qui vous suit\n',
     builder: (yargs) => {
         return yargs
          .option('all', {
