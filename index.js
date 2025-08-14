@@ -2,26 +2,24 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-import followers from './command/followers.js';
-import follow from './command/follow.js';
+import commands from './command/index.js';
 
 const argv = yargs(hideBin(process.argv))
-  .usage('Usage: $0 <command> [options]')
+  .usage('Usage: $0 <command> [options]');
 
-  .command(
-    followers.command, 
-    followers.description,
-    followers.builder,
-    followers.handler
-  )
+argv.version("0.0.1")
 
-  .command(
-    follow.command, 
-    follow.description,
-    follow.builder,
-    follow.handler
+commands.forEach(cmd => {
+  argv.command(
+    cmd.command,
+    cmd.description,
+    cmd.builder,
+    cmd.handler
   )
+});
+
+argv
   .help('h')
   .alias('h','help')
   .epilog('copyright 2025')
-  .parse()
+  .parse();
