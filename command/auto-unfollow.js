@@ -5,8 +5,7 @@ export default {
         return yargs
             .option('ignore', {
                 alias: 'ig',
-                type: 'string',
-                describe: 'Indiqué le\'utilisateur à ignorer'
+                describe: 'Indiqué l\'utilisateur à ignorer'
             })
             .option('json', {
                 alias: 'j',

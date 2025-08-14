@@ -1,6 +1,6 @@
 export default {
     command: 'followers',
-    description: 'Afficher des utilisateurs abonné',
+    description: 'Afficher l\'utilisateurs que vous avez suivie',
     builder: (yargs) => {
         return yargs
             .option('all', {
