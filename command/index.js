@@ -4,15 +4,17 @@ import unfollow from "./unfollow.js";
 import autoUnfollow from "./auto-unfollow.js";
 import following from "./following.js";
 import autoFollow from "./auto-follow.js";
+import login from "./login.js";
 
 
 const commands = [
+    login,
     followers,
     following,
     follow,
     unfollow,
     autoFollow,
-    autoUnfollow
+    autoUnfollow,
 ]
 
 export default commands
