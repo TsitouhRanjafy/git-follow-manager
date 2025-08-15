@@ -1,5 +1,6 @@
 import { fetch_followers } from "../github-api/subscribe.js";
 import { get_env } from "../helper/env.access.js";
+import chalk from "chalk";
 
 export default {
     command: 'followers',
@@ -22,14 +23,13 @@ export default {
             .demandCommand(0)
     },
     handler: async (argv) => {
-      console.info('commend followers executer avec ',argv);
-      try {
-        const token = await get_env("my_token");
-        const list = await fetch_followers(token, argv.limite, argv.page)
-        console.table(list);
-      } catch (error) {
-        console.error();
-      }
+        try {
+          const token = await get_env("my_token");
+          const list = await fetch_followers(token, argv.limite, argv.page)
+          console.table(list);
+        } catch (error) {
+            console.error(chalk.hex('#FFA500')(" !Internal error, cmd: followers"));
+        }
     },
     middleware: undefined
 }
