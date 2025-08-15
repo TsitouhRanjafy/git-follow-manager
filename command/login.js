@@ -2,6 +2,7 @@ import { fetch_code_verification, fetch_token } from "../github-api/oauth.js";
 import inquirer from "inquirer";
 import { exec } from "node:child_process";
 import chalk from "chalk";
+import { set_env } from "../helper/env.access.js";
 
 
 export default {
@@ -71,18 +72,3 @@ function open_url(url){
     })
 }
 
-function set_env(key, value) {
-    const shell = `
-        cd #
-        cd /tmp
-        mkdir -p gitfollow_cli_env
-        cd gitfollow_cli_env
-        echo ${value} > ${key}
-    `
-    exec(shell, (error, stdout, stderr) => {
-        if (error) {
-            console.error(`exec error`);
-            return
-        }
-    })
-}
