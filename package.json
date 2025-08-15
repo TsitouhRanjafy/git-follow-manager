@@ -1,20 +1,17 @@
 {
   "name": "git-activity-handler",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "type": "module",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "nodemon ./src/index.ts",
-    "glm": "node ./src/index.ts"
-  },
+  "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "Tsitohaina",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^24.2.1",
-    "typescript": "^5.9.2"
-  },
   "dependencies": {
-    "nodemon": "^3.1.10"
+    "chalk": "^5.5.0",
+    "inquirer": "^12.9.2",
+    "nodemon": "^3.1.10",
+    "yargs": "^18.0.0-candidate.7"
   }
 }
