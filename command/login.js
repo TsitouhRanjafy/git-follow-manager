@@ -12,7 +12,6 @@ export default {
         return yargs
     },
     handler: async (argv) => {
-        console.log('commend login executer avec ',argv);
         try {
             const code_verification = await fetch_code_verification()
             if (!code_verification) {
@@ -44,7 +43,7 @@ export default {
             set_env('my_token', token.access_token)
             console.info("  ✔ login successfull")
         } catch (error) {
-            console.info(chalk.hex('#FFA500')(" !internal server error, cantact admin"));
+            console.error(chalk.hex('#FFA500')(" !Internal error, cmd: login "));
             return;
         }
     },
