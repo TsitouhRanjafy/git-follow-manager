@@ -37,3 +37,5 @@ export async function set_env(key, value) {
         console.error(chalk.hex('#FFA500')(" !internal server error "));
     }
 }
+
+export const base_url = 'https://api.github.com'

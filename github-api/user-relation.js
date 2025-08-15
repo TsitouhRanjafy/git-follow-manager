@@ -1,6 +1,5 @@
 import chalk from "chalk";
-
-const base_url = 'https://api.github.com'
+import { base_url } from "../helper/env.access.js";
 
 const fetch_followers =  async (token, limite = 30, page = 1) => {
     try {
