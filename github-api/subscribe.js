@@ -70,5 +70,5 @@ const fetch_following = async (token, limite = 30, page = 1) => {
 
 export {
     fetch_followers,
-    fetch_followers
+    fetch_following
 }
