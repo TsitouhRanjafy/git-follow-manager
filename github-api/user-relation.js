@@ -18,7 +18,7 @@ const fetch_followers =  async (token, limite = 30, page = 1) => {
         }
         if (res.status != 200) {
             console.info(chalk.hex('#FFA500')(" !Essayer de vous authentifier à nouveau"));
-            return
+            return []
         }
         const data = await res.json()
         data.forEach((e,i) => {
@@ -51,7 +51,7 @@ const fetch_following = async (token, limite = 30, page = 1) => {
         }
         if (res.status != 200) {
             console.info(chalk.hex('#FFA500')(" !Essayer de vous authentifier à nouveau"));
-            return
+            return []
         }
         const data = await res.json()
         data.forEach((e,i) => {
