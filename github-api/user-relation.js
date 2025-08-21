@@ -1,6 +1,5 @@
 import chalk from "chalk";
-
-const base_url = 'https://api.github.com'
+import { base_url } from "../helper/env.access.js";
 
 const fetch_followers =  async (token, limite = 30, page = 1) => {
     try {
@@ -19,7 +18,7 @@ const fetch_followers =  async (token, limite = 30, page = 1) => {
         }
         if (res.status != 200) {
             console.info(chalk.hex('#FFA500')(" !Essayer de vous authentifier à nouveau"));
-            return
+            return []
         }
         const data = await res.json()
         data.forEach((e,i) => {
@@ -52,7 +51,7 @@ const fetch_following = async (token, limite = 30, page = 1) => {
         }
         if (res.status != 200) {
             console.info(chalk.hex('#FFA500')(" !Essayer de vous authentifier à nouveau"));
-            return
+            return []
         }
         const data = await res.json()
         data.forEach((e,i) => {

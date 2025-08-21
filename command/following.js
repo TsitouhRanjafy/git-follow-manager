@@ -1,4 +1,4 @@
-import { fetch_following } from "../github-api/subscribe.js";
+import { fetch_following } from "../github-api/user-relation.js";
 import { get_env } from "../helper/env.access.js";
 import chalk from "chalk";
 
