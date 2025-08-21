@@ -3,7 +3,7 @@ import { fetch_followers } from "../github-api/user-relation.js";
 import { get_env } from "../helper/env.access.js";
 import chalk from "chalk";
 import ora from "ora";
-
+import { readFileSync } from "node:fs";
 
 export default {
     command: 'auto-follow',
@@ -11,7 +11,7 @@ export default {
         builder: (yargs) => {
         return yargs
             .option('ignore', {
-                alias: 'ig',
+                alias: 'i',
                 describe: 'Indiqué l\'utilisateur à ignorer'
             })
             .option('json', {
@@ -22,9 +22,16 @@ export default {
     },
     handler: async (argv) => {
 
+        let user_to_ignore = new Map()
         try {
             const token = await get_env("my_token");
-            auto_follow_hander(token);
+
+            if (argv.ignore && argv.json) {
+                const users = JSON.parse(readFileSync(argv.json, 'utf-8'));
+                for (const user of users) user_to_ignore.set(user.user_name, true);
+            }
+
+            auto_follow_handler(token, user_to_ignore);
         } catch (error) {
             console.error(chalk.hex('#FFA500')(` !Internal error, cmd: auto-follow`))
         }
@@ -32,7 +39,7 @@ export default {
     middleware: undefined
 }
 
-async function auto_follow_hander(token) {
+async function auto_follow_handler(token, user_to_ignore) {
     let count_one_fetch = 100
     let page = 1
     const spinner = ora("Loading fetch").start()
@@ -42,7 +49,9 @@ async function auto_follow_hander(token) {
             var followers = await fetch_followers(token, count_one_fetch, page);
 
             for (let index = 0; index < followers.length; index++) {
-                await follow_or_unfollow_user(token, followers[index].user_name, true)
+                if (!user_to_ignore.has(followers[index].user_name)) {
+                    await follow_or_unfollow_user(token, followers[index].user_name, true)
+                }
                 spinner.text = (`Fetch follow: ${followers[index].user_name}`);
             }
             if (followers.length < count_one_fetch) {
