@@ -1,7 +1,9 @@
 import { fetch_followers } from "../github-api/user-relation.js";
 import { fetch_following } from "../github-api/user-relation.js";
 import chalk from "chalk";
-
+import { promisify } from "node:util";
+import child_process from "node:child_process";
+const exec = promisify(child_process.exec)
 
 /**
  * 
@@ -56,7 +58,30 @@ async function fetch_all_following(token) {
     }
 }
 
+/**
+ * 
+ * @param {string} file_name 
+ * @param {string} value 
+ * @param {string} path
+ * @returns boolean for success status 
+ */
+async function create_file(file_name, value, path = ".") {
+    const shell = `
+    cd ${path}
+    echo '${value}' > ${file_name}
+    `
+    try {
+        const { stdout, stderr } = await exec(shell);
+        if (stderr) return false;
+        return true
+    } catch (error) {
+        console.error(chalk.hex('#FFA500')(" !internal server error, reference: create_file",error));
+        return false
+    }
+}
+
 export {
     fetch_all_following,
-    fetch_all_follower
+    fetch_all_follower,
+    create_file
 }
