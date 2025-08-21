@@ -3,7 +3,6 @@ import chalk from "chalk";
 import { fetch_all_follower, fetch_all_following } from "../helper/library.js";
 import ora from "ora";
 import { create_file } from "../helper/library.js";
-var spinner = ora("Loading").start()
 
 export default {
     command: 'not-followed-back',
@@ -17,10 +16,11 @@ export default {
             })
     },
     handler: async (argv) => {
+        const spinner = ora("Loading").start()
 
         try {
             const token = await get_env("my_token");
-            const user_not_followed = await not_followed_back_handler(token)
+            const user_not_followed = await not_followed_back_handler(token, spinner)
 
             console.log("\n");
             console.table(user_not_followed);
@@ -44,7 +44,7 @@ export default {
  * @param {string} token 
  * @returns array of { user_name: string }
  */
-async function not_followed_back_handler(token) {
+async function not_followed_back_handler(token, spinner) {
     
     try {
         const all_followers = await fetch_all_follower(token);
