@@ -39,6 +39,11 @@ export default {
     middleware: undefined
 }
 
+/**
+ * 
+ * @param {string} token 
+ * @param {Map} user_to_ignore 
+ */
 async function auto_follow_handler(token, user_to_ignore) {
     let count_one_fetch = 100
     let page = 1
