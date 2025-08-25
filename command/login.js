@@ -15,15 +15,15 @@ export default {
         try {
             const code_verification = await fetch_code_verification()
             if (!code_verification) {
-                console.info("  ✖ login failed")
+                console.info(chalk.hex('#FFA500')("✖ login failed"))
                 return
             }
             
             // redirection to navigator
-            console.log('   authentification code:'+ chalk.green.bold(code_verification.user_code))
+            console.log(chalk.bold('  authentification code:') + chalk.green.bold(code_verification.user_code))
             const res = await confirm(`redirection à ${code_verification.verification_uri}`, 'redirection');
             if (!res.redirection) {
-                console.info(' ✖ authentification annuler');
+                console.info(chalk.hex('#FFA500')('✖ authentification annuler'));
                 return
             }
             open_url(code_verification.verification_uri);
@@ -37,11 +37,11 @@ export default {
             // handle token
             const token = await fetch_token(code_verification.device_code)
             if (!token) {
-                console.info("  ✖ login failed")
+                console.info(chalk.hex('#FFA500')("✖ login failed"))
                 return
             }
             set_env('my_token', token.access_token)
-            console.info("  ✔ login successfull")
+            console.info(chalk.green("✔ login successfull"))
         } catch (error) {
             console.error(chalk.hex('#FFA500')(" !Internal error, cmd: login "));
             return;
