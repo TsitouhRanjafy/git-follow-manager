@@ -31,7 +31,7 @@ export default {
             while (!authentified_confirmation.authentifier) {
                 console.log(chalk.hex('#FFA500')('  !Entrer le code s\'il vous plait!'))
                 open_url(code_verification.verification_uri);
-                authentified_confirmation = await confirm(`Avez-vous le code`,'authentifier')
+                authentified_confirmation = await confirm(`Avez-vous entrer le code ci-dessus`,'authentifier')
             }
 
             // handle token
