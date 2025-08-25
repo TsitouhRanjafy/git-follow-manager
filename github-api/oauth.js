@@ -42,11 +42,14 @@ const fetch_token = async (device_code) => {
             })
         })
 
+        
         if (response.status != 200) {
             console.info(chalk.hex('#FFA500')(" !github api a un erreur"));
             return null
         }
         const data = await response.json()
+
+        if (data.error) return null;
 
         return Object(data)
     } catch (error) {
