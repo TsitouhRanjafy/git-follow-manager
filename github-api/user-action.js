@@ -18,7 +18,7 @@ const follow_or_unfollow_user = async (token, user_name, is_follow = true) => {
         }
 
         if (res.status == 304) {
-            console.info(chalk.hex('#FFA500')(` !Utilisateur déjà ${!is_follow ?? 'non'} suivie: ${user_name}`));
+            console.info(chalk.hex('#FFA500')(` !Utilisateur déjà ${is_follow ? '': 'non'} suivie: ${user_name}`));
             return false
         }
 
